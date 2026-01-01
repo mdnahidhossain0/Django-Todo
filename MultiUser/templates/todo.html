@@ -1,0 +1,25 @@
+<h2>Add Todo</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="title" placeholder="Title" required>
+  <textarea name="describtion" placeholder="Description" required></textarea>
+  <button type="submit">Add</button>
+</form>
+
+<hr>
+
+<h2>Your Todos</h2>
+
+{% for todo in res %}
+  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <h3>{{ todo.title }}</h3>
+    <p>{{ todo.describtion }}</p>
+
+    <a href="{% url 'edit_todo' todo.srno %}">✏️ Edit</a> |
+    <a href="{% url 'delete_todo' todo.srno %}"
+       onclick="return confirm('Delete this todo?')">🗑️ Delete</a>
+  </div>
+{% empty %}
+  <p>No todos yet.</p>
+{% endfor %}
