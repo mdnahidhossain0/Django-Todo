@@ -12,13 +12,11 @@ Perfect for beginners learning Django authentication and CRUD operations.
 
 ## 🚀 Features
 
-- 🔐 User Authentication (Signup / Login / Logout)
+- 🔐 User Authentication (Signup / Login)
 - 🧑‍💻 Each user sees only their own todos
 - ➕ Add new todos
 - ✏️ Edit existing todos
 - 🗑️ Delete todos
-- 📱 Fully responsive UI (Mobile & Desktop)
-- 🎨 Clean, modern design (no framework)
 
 ## 🖼️ Screenshots
 
@@ -34,4 +32,14 @@ Perfect for beginners learning Django authentication and CRUD operations.
 - **Authentication:** Django built-in User model
 
 
+## ⚠️ Important Warning (uv Required)
 
+> This project uses **`uv`** instead of `pip`.
+
+❌ Do **NOT** use:
+```bash
+pip install -r requirements.txt
+
+## ✅ Always use uv:
+
+uv sync
