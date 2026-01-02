@@ -1,10 +1,119 @@
-<h2>Edit Todo</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Todo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<form method="POST">
-  {% csrf_token %}
-  <input type="text" name="title" value="{{ todo.title }}" required>
-  <textarea name="describtion" required>{{ todo.describtion }}</textarea>
-  <button type="submit">Update</button>
-</form>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
 
-<a href="/todo">⬅ Back</a>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f4f6fb;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+      text-align: center;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #667eea;
+    }
+
+    button {
+      width: 100%;
+      background: #667eea;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #667eea;
+      font-weight: 500;
+      text-align: center;
+      width: 100%;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h2>Edit Todo</h2>
+
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" value="{{ todo.title }}" required>
+        <textarea name="describtion" required>{{ todo.describtion }}</textarea>
+        <button type="submit">💾 Update Todo</button>
+      </form>
+
+      <a href="/todo" class="back">⬅ Back to Todos</a>
+    </div>
+  </div>
+
+</body>
+</html>

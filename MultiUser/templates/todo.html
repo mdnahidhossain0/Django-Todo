@@ -1,25 +1,165 @@
-<h2>Add Todo</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<form method="POST">
-  {% csrf_token %}
-  <input type="text" name="title" placeholder="Title" required>
-  <textarea name="describtion" placeholder="Description" required></textarea>
-  <button type="submit">Add</button>
-</form>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
 
-<hr>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f4f6fb;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
 
-<h2>Your Todos</h2>
+    .container {
+      width: 100%;
+      max-width: 700px;
+    }
 
-{% for todo in res %}
-  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-    <h3>{{ todo.title }}</h3>
-    <p>{{ todo.describtion }}</p>
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
 
-    <a href="{% url 'edit_todo' todo.srno %}">✏️ Edit</a> |
-    <a href="{% url 'delete_todo' todo.srno %}"
-       onclick="return confirm('Delete this todo?')">🗑️ Delete</a>
+    /* Add Todo Card */
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .card input,
+    .card textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .card textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .card input:focus,
+    .card textarea:focus {
+      border-color: #667eea;
+    }
+
+    .card button {
+      background: #667eea;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .card button:hover {
+      background: #5a67d8;
+    }
+
+    /* Todo List */
+    .todo-item {
+      background: #fff;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      margin-bottom: 15px;
+    }
+
+    .todo-item h3 {
+      margin: 0 0 8px;
+      color: #222;
+    }
+
+    .todo-item p {
+      margin: 0 0 12px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .actions a {
+      text-decoration: none;
+      margin-right: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .actions a.edit {
+      color: #2563eb;
+    }
+
+    .actions a.delete {
+      color: #dc2626;
+    }
+
+    .empty {
+      text-align: center;
+      color: #777;
+      margin-top: 30px;
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .card button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Add Todo -->
+    <div class="card">
+      <h2>Add Todo</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="describtion" placeholder="Description" required></textarea>
+        <button type="submit">➕ Add Todo</button>
+      </form>
+    </div>
+
+    <!-- Todo List -->
+    <h2>Your Todos</h2>
+
+    {% for todo in res %}
+      <div class="todo-item">
+        <h3>{{ todo.title }}</h3>
+        <p>{{ todo.describtion }}</p>
+
+        <div class="actions">
+          <a href="{% url 'edit_todo' todo.srno %}" class="edit">✏️ Edit</a>
+          <a href="{% url 'delete_todo' todo.srno %}"
+             class="delete"
+             onclick="return confirm('Delete this todo?')">🗑️ Delete</a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="empty">No todos yet. Add your first one 🚀</p>
+    {% endfor %}
+
   </div>
-{% empty %}
-  <p>No todos yet.</p>
-{% endfor %}
+
+</body>
+</html>
