@@ -32,6 +32,11 @@ Perfect for beginners learning Django authentication and CRUD operations.
 - **Authentication:** Django built-in User model
 
 
+
+## Project 2 : DRF_Todo
+# 📝 Django Rest Framework Todo App
+
+
 ## ⚠️ Important Warning (uv Required)
 
 > This project uses **`uv`** instead of `pip`.
